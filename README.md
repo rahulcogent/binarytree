@@ -11,3 +11,4 @@ This is binary tree and binary search tree implementation in C++. It is useful a
 - find element (BST)
 - find LCA (Least Common Ancestor)
 - Serialize tree to list and deserialize back.
+- Predecessor and successor.

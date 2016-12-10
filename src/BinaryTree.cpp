@@ -1,5 +1,7 @@
 #include "BinaryTree.h"
 #include <queue>
+#include <stack>
+#include <iostream>
 
 void BinaryTree::inOrder(TreeNode* subTree) {
     if(subTree == nullptr)
@@ -199,3 +201,145 @@ bool BinaryTree::isRightMarker(std::string str) {
 std::string BinaryTree::stripMarker(std::string str) {
     return str.substr(0, str.length() - 3);
 }
+    
+TreeNode* BinaryTree::successor(TreeNode* node) {
+    if(root == nullptr || node == nullptr)
+        return nullptr;
+
+    std::stack<TreeNode*> s;
+    bool done = false;
+    TreeNode* node1 = root;
+    bool getSuccessor = false;
+
+    while(!done) {
+        if(node1) {
+            if(node1 == node) {
+                getSuccessor = true;
+                break;
+            }
+            s.push(node1);
+            node1 = node1->left;
+        } else {
+            if(s.size() > 0) {
+                node1 = s.top();
+                // Don't pop parent if node is in the subtree,
+                // will need to move up the tree.
+                if(node1->right != node) {
+                    s.pop();
+                }
+                node1 = node1->right;
+            } else {
+                done = true;
+            }
+        }
+    }
+
+    if(getSuccessor) {
+        if(node1->right != nullptr) {
+            // Find the leftmost child.
+            TreeNode* rightNode = node1->right;
+            while(rightNode->left != nullptr) {
+                rightNode = rightNode->left;
+            }
+            return rightNode;
+        } else {
+            TreeNode* currNode = node;
+            while(s.size() > 0) {
+                TreeNode* pNode = s.top();
+                s.pop();
+                if(pNode->left == currNode)
+                    return pNode;
+                currNode = pNode;
+            }
+            return nullptr;
+        }
+    }
+    
+    return nullptr;
+}
+    
+TreeNode* BinaryTree::find(std::string data) {
+    if(root == nullptr)
+        return nullptr;
+
+    std::stack<TreeNode*> s;
+    bool done = false;
+    TreeNode* node1 = root;
+
+    while(!done) {
+        if(node1) {
+            if(node1->data == data) {
+                return node1;
+            }
+            s.push(node1);
+            node1 = node1->left;
+        } else {
+            if(s.size() > 0) {
+                node1 = s.top();
+                s.pop();
+                node1 = node1->right;
+            } else {
+                done = true;
+            }
+        }
+    }
+
+    return nullptr;
+}
+ 
+TreeNode* BinaryTree::predecessor(TreeNode* node) {
+    if(root == nullptr || node == nullptr)
+        return nullptr;
+
+    std::stack<TreeNode*> s;
+    bool done = false;
+    TreeNode* node1 = root;
+    bool getpredecessor = false;
+
+    while(!done) {
+        if(node1) {
+            if(node1 == node) {
+                getpredecessor = true;
+                break;
+            }
+            s.push(node1);
+            node1 = node1->left;
+        } else {
+            if(s.size() > 0) {
+                node1 = s.top();
+                // Don't pop parent if node is in the subtree,
+                // will need to move up the tree.
+                if(node1->right != node) {
+                    s.pop();
+                }
+                node1 = node1->right;
+            } else {
+                done = true;
+            }
+        }
+    }
+
+    if(getpredecessor) {
+        if(node1->left != nullptr) {
+            // Find the leftmost child.
+            TreeNode* leftNode = node1->left;
+            while(leftNode->right != nullptr) {
+                leftNode = leftNode->right;
+            }
+            return leftNode;
+        } else {
+            TreeNode* currNode = node;
+            while(s.size() > 0) {
+                TreeNode* pNode = s.top();
+                s.pop();
+                if(pNode->right == currNode)
+                    return pNode;
+                currNode = pNode;
+            }
+            return nullptr;
+        }
+    }
+    
+    return nullptr;
+}
+

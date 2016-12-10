@@ -2,7 +2,7 @@ CC=g++
 IDIR=include
 ODIR=obj
 SDIR=src
-CFLAGS=-Wall -I$(IDIR) -std=c++11
+CFLAGS=-Wall -I$(IDIR) -std=c++11 -g
 
 _DEPS = TreeNode.h BinaryTree.h BinarySearchTree.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS))

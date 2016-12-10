@@ -23,6 +23,9 @@ public:
     bool findLCA(std::string nodeData1, std::string nodeData2, std::string& lcm);
     void serialize(std::list<std::string>& treeList, TreeNode* subTree, LeafType type);
     void deserialize(std::list<std::string> treeList, TreeNode** tree, std::list<std::string>::iterator& iter);
+    TreeNode* successor(TreeNode* node);
+    TreeNode* find(std::string data);
+    TreeNode* predecessor(TreeNode* node);
 
     TreeNode* root;
 

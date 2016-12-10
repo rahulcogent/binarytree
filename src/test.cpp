@@ -15,8 +15,56 @@ int main(int argc, char* argv[]) {
     std::cout << "inOrder: ";
     t->inOrder(t->root);
     std::cout << std::endl;
+    TreeNode* node = t->find("Les");
+    TreeNode* succ = t->successor(node);
+    if(succ) {
+        std::cout << "Les' successor: ";
+        succ->print();
+    } else
+        std::cout << "No Les successor";
+    std::cout << std::endl;
+    node = t->find("Frank");
+    succ = t->successor(node);
+    if(succ) {
+        std::cout << "Frank's successor: ";
+        succ->print();
+    } else
+        std::cout << "No Frank successor";
+    std::cout << std::endl;
+    node = t->find("Terry");
+    succ = t->successor(node);
+    if(succ) {
+        std::cout << "Terry's successor: ";
+        succ->print();
+    } else
+        std::cout << "No Terry successor";
+    std::cout << std::endl;
     std::cout << "preOrder: ";
     t->preOrder(t->root);
+    std::cout << std::endl;
+    node = t->find("Les");
+    TreeNode* pre = t->predecessor(node);
+    if(pre) {
+        std::cout << "Les' predecessor: ";
+        pre->print();
+    } else
+        std::cout << "No Les predecessor";
+    std::cout << std::endl;
+    node = t->find("Frank");
+    pre = t->predecessor(node);
+    if(pre) {
+        std::cout << "Frank's predecessor: ";
+        pre->print();
+    } else
+        std::cout << "No Frank predecessor";
+    std::cout << std::endl;
+    node = t->find("Terry");
+    pre = t->predecessor(node);
+    if(pre) {
+        std::cout << "Terry's predecessor: ";
+        pre->print();
+    } else
+        std::cout << "No Terry predecessor";
     std::cout << std::endl;
     std::cout << "postOrder: ";
     t->postOrder(t->root);
