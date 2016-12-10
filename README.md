@@ -1,5 +1,5 @@
 # binarytree
-This is binary tree and binary search tree implementation in C++. It is useful as a tutorial learning. It implements below functions:
+This is binary tree and binary search tree implementation in C++. It is useful as a tutorial for learning. It implements below functions:
 
 - Create sample tree
 - Inorder
